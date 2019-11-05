@@ -1,0 +1,9 @@
+%p{:id => "notice"}= notice
+%h1 Application
+- if current_user
+  %p= "Logged in as #{current_user.email}."
+  = link_to "Log Out", logout_path
+- else
+  %p If you want to log in...
+  Click Here
+  = link_to "Log In", login_path
