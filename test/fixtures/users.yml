@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: some@email.com
+  password_digest: $2a$12$Hjp3yutyCix5BX9hY9yjrO0hoRUPQgixzVILtA.AJk/VuR4bCrQVC
+
+two:
+  email: other@email.com
+
+moderator:
+  email: mod@email.com
+  moderator: true
+  password_digest: $2a$12$Hjp3yutyCix5BX9hY9yjrO0hoRUPQgixzVILtA.AJk/VuR4bCrQVC

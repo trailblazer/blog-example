@@ -15,4 +15,27 @@ class ActiveSupport::TestCase
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end
+
+end
+
+class Capybara::Rails::TestCase
+  def sign_in_mod
+    visit root_path
+    click_link('Log In')
+    @moderator = users :moderator
+    @moderator.update!(password: '$3cr3t')
+    fill_in('Email', with: 'mod@email.com')
+    fill_in('Password', with: '$3cr3t')
+    click_on('Submit')
+  end
+
+  def sign_in_user
+    visit root_path
+    click_link('Log In')
+    @user = users :one
+    @user.update!(password: '$3cr3t')
+    fill_in('Email', with: 'some@email.com')
+    fill_in('Password', with: '$3cr3t')
+    click_on('Submit')
+  end
 end
