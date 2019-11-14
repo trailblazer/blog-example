@@ -1,5 +1,5 @@
 module Moderator
-  class BlogPostsController < ApplicationController
+  class BlogPostsController < ModeratorController
     def index
       render :index, locals: {posts: BlogPost.all}
     end

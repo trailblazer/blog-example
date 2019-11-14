@@ -1,4 +1,4 @@
 module Moderator
-  class CommentsController < ApplicationController
+  class CommentsController < ModeratorController
   end
 end

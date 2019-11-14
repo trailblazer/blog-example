@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 module Moderator
-  class ApprovalsController < ApplicationController
+  class ApprovalsController < ModeratorController
+
+
+
     def new
       render :new, locals: { blog_post: blog_post }
     end

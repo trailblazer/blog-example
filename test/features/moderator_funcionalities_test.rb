@@ -43,4 +43,10 @@ class ModeratorFuncionalitiesTest < Capybara::Rails::TestCase
     click_on('Submit')
     assert page.has_content?('Suggestions have been submitted!')
   end
+
+  test 'not a moderator cannot access moderator site' do
+    sign_in_user
+    visit moderator_blog_posts_path
+    assert page.has_content?("The page you were looking for doesn't exist.")
+  end
 end

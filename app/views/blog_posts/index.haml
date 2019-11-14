@@ -1,23 +1,20 @@
 .container-fluid
   .row
-    - posts.each do |post|
+    - blog_posts.each do |post|
       %div.post_preview
         .col-sm
           %h1
-            = post.title
+            %u
+              =link_to "#{post.title}", blog_post_path(post.id), class: "text-primary stretched-link"
         .col-md-12
           %p
             = post.description
-          %p
-            Author:
-            = post.user&.email
         .col-sm-6
           = fa_icon "comments", text: post.comments.size
         .col-sm-6
           -case post.status
           -when "submitted"
-            %u
-              =link_to "Approve/Decline/Suggest", new_moderator_blog_post_approval_path(post.id), class: "text-primary stretched-link"
+            Submitted
           -when "declined"
             Declinded
           -when "approved"

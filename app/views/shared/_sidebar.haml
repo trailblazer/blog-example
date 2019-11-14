@@ -4,19 +4,8 @@
   %ul.list-unstyled.components
     %p Navigation
     %li.active
-      %a.toggle{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#homeSubmenu"} Home
+      %a.toggle{"aria-expanded" => "false", "data-toggle" => "collapse", :href => root_path} Home
     %li
-      %a{:href => "#"} About
-    %li
-      %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#pageSubmenu"} BlogPost Quik Access
-      %ul#pageSubmenu.collapse.list-unstyled
-        %li
-          %a{:href => "#"} Post 1
-        %li
-          %a{:href => "#"} Post 2
-        %li
-          %a{:href => "#"} Post 3
-        %li
-          %a{:href => "#"} Post 4
+      %a{:href => new_blog_post_path} Write a new post
     %li
       %a{:href => "#"} Contact

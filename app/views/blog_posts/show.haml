@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+    .col-sm-3
+      %h1
+        = blog_post.title
+    .col-sm-3
+      = button_to "Edit", edit_blog_post_path(blog_post_id: blog_post.id), :class => "btn btn-info mb-2", method: :get
+      = form_tag blog_post_status_save_path(blog_post_id: blog_post.id), method: :post do |form|
+        =submit_tag 'Save', class: 'btn btn-warning mb-2', "data-toggle"=>"tooltip", "data-placement" => "top", title: "This will indicate that this post is not ready to be published"
+      = form_tag blog_post_status_submit_path(blog_post_id: blog_post.id) do |form|
+        =submit_tag 'Submit', class: 'btn btn-primary mb-2',"data-toggle"=>"tooltip", "data-placement" => "top", title: "This will indicate that this post is ready to be published"
+  .row
+    .col-md
+      %h4
+        Description:
+      %h5{:style => "margin-left: 13px;"}
+        = blog_post.description
+      %h2
+        Content:
+      %h3{:style => "margin-left: 13px;"}
+        = blog_post.content
+      %h2
+        Status:
+      %h3{:style => "margin-left: 13px;"}
+        = blog_post.status.capitalize
+      %p
+        = "Author: #{blog_post.user.email}"

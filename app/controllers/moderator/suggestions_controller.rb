@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Moderator
-  class SuggestionsController < ApplicationController
+  class SuggestionsController < ModeratorController
     def new
       render :new, locals: { blog_post: blog_post }
     end

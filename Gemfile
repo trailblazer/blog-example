@@ -12,6 +12,7 @@ gem 'trailblazer'
 gem 'trailblazer-cells'
 gem 'trailblazer-developer'
 gem 'trailblazer-rails'
+gem 'dry-validation'
 
 gem "font-awesome-rails"
 gem 'bootstrap', '~> 4.3.1'

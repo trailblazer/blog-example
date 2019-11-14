@@ -26,6 +26,10 @@ module BlogPost::Moderator
         blog_post.save!
       end
 
+      def change_status(ctx, blog_post:, model:, **)
+        ctx[:edit_requested] = blog_post.update!(status: :edit_requested)
+      end
+
       # !!--ERRORS--!!
 
       def model_creation_failed(ctx, **)
