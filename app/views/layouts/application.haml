@@ -2,9 +2,22 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title TbBaseApp
+    %title TbBlog
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
   %body
-    = yield
+    = javascript_pack_tag 'side_bar'
+    .wrapper
+      - if session[:user_id]
+        = render "shared/sidebar"
+      %div#content
+        -if notice
+          .alert.alert-success{:role => "alert"}
+            = notice
+        -elsif alert
+          .alert.alert-danger{:role => "alert"}
+            = alert
+        - if session[:user_id]
+          = render "shared/nav_bar"
+        = yield

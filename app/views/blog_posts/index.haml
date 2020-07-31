@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+    - blog_posts.each do |post|
+      %div.post_preview
+        .col-sm
+          %h1
+            %u
+              =link_to "#{post.title}", blog_post_path(post.id), class: "text-primary stretched-link"
+        .col-md-12
+          %p
+            = post.description
+        .col-sm-6
+          = fa_icon "comments", text: post.comments.size
+        .col-sm-6
+          -case post.status
+          -when "submitted"
+            Submitted
+          -when "declined"
+            Declinded
+          -when "approved"
+            Approved
+          - when "saved"
+            Saved
+          -when "published"
+            Published
+          -when "edit_requested"
+            Changes Requested

@@ -1,0 +1,30 @@
+.container-fluid
+  .row
+    - posts.each do |post|
+      %div.post_preview
+        .col-sm
+          %h1
+            = post.title
+        .col-md-12
+          %p
+            = post.description
+          %p
+            Author:
+            = post.user&.email
+        .col-sm-6
+          = fa_icon "comments", text: post.comments.size
+        .col-sm-6
+          -case post.status
+          -when "submitted"
+            %u
+              =link_to "Approve/Decline/Suggest", new_moderator_blog_post_approval_path(post.id), class: "text-primary stretched-link"
+          -when "declined"
+            Declinded
+          -when "approved"
+            Approved
+          - when "saved"
+            Saved
+          -when "published"
+            Published
+          -when "edit_requested"
+            Changes Requested

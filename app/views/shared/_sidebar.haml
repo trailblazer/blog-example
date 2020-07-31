@@ -1,0 +1,11 @@
+%nav#sidebar
+  .sidebar-header
+    %h3 Blog Sidebar
+  %ul.list-unstyled.components
+    %p Navigation
+    %li.active
+      %a.toggle{"aria-expanded" => "false", "data-toggle" => "collapse", :href => root_path} Home
+    %li
+      %a{:href => new_blog_post_path} Write a new post
+    %li
+      %a{:href => "#"} Contact

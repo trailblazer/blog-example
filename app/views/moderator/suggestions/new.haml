@@ -1,0 +1,5 @@
+= form_tag moderator_blog_post_suggestions_path(blog_post_id: blog_post.id), method: :post do |form|
+  %div.form-group
+    %label{:for => :content} Suggestion
+    %input.form-control{id: "suggestion", type: "text", placeholder: "Type your suggestion here", name: "content"}
+  =submit_tag 'Submit', class: 'btn btn-primary mb-2'

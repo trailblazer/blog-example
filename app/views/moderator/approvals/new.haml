@@ -1,0 +1,23 @@
+.container-fluid
+  .row
+    .col-sm-3
+      %h1
+        = blog_post.title
+    .col-sm-3
+      = form_tag moderator_blog_post_approvals_path, method: :post do |form|
+        =submit_tag 'Approve', class: 'btn btn-primary mb-2'
+      = form_tag moderator_blog_post_decline_path(blog_post_id: blog_post.id) do |form|
+        =submit_tag 'Decline', class: 'btn btn-danger mb-2'
+      = button_to "Add Suggestions", new_moderator_blog_post_suggestion_path(blog_post_id: blog_post.id), :class => "btn btn-info mb-2", method: :get
+  .row
+    .col-md
+      %h4
+        Description:
+      %h5{:style => "margin-left: 13px;"}
+        = blog_post.description
+      %h2
+        Content:
+      %h3{:style => "margin-left: 13px;"}
+        = blog_post.content
+      %p
+        = "Author: #{blog_post.user.email}"

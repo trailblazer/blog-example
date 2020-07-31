@@ -3,25 +3,37 @@
 require 'test_helper'
 
 class CanAccessHomeTest < Capybara::Rails::TestCase
-  def test_cannot_login_without_registration
+
+  test 'cannot login without registration' do
     visit root_path
     click_link('Log In')
     fill_in('Email', with: 'important@person.com')
     fill_in('Password', with: '$3cr3t')
-    click_on('Login')
-    assert page.has_content?('Those credentials were not to my liking. Try again')
+    click_on('Submit')
+    assert page.has_content?('User with this email does not exist')
   end
 
-  def test_can_login_and_logout
-    User.create(email: 'important@person.com', password: '$3cr3t')
+  test 'cannot login with bad password' do
+    @user = users :one
+    @user.update!(password: '$3cr3t')
     visit root_path
     click_link('Log In')
-    fill_in('Email', with: 'important@person.com')
-    fill_in('Password', with: '$3cr3t')
-    click_on('Login')
+    fill_in('Email', with: 'some@email.com')
+    fill_in('Password', with: 'secret')
+    click_on('Submit')
+    assert page.has_content?('Those credentials were horrible! Try again?')
+  end
+
+  test 'can login and logout' do
+    sign_in_user
     assert page.has_content?('You are now logged in!')
-    assert page.has_content?('important@person.com')
+    assert page.has_content?('some@email.com')
     click_on('Log Out')
     assert page.has_content?('Logged out!')
+  end
+
+  test 'cannot access insides of the app without login' do
+    visit moderator_blog_posts_path
+    assert page.has_content?("The page you were looking for doesn't exist.")
   end
 end

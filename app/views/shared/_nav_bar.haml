@@ -1,0 +1,24 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    %button#sidebarCollapse.btn.btn-info{:type => "button"}
+      = fa_icon "bars"
+      %span Toggle Sidebar
+      %span
+      %span
+      %span
+    %h6{:style => "margin-left: 13px;"}
+      ="Logged in as #{current_user.email}"
+      %span{:style => "margin-left: 13px;"}
+        %a.badge.badge-dark{:href => logout_path} Log Out
+    %button.btn.btn-dark.d-inline-block.d-lg-none.ml-auto{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %svg.svg-inline--fa.fa-align-justify.fa-w-14{"aria-hidden" => "true", "data-fa-i2svg" => "", "data-icon" => "align-justify", "data-prefix" => "fas", :role => "img", :viewbox => "0 0 448 512", :xmlns => "http://www.w3.org/2000/svg"}
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.nav.navbar-nav.ml-auto
+        %li.nav-item.active
+          %a.nav-link{:href => root_path} Home
+        %li.nav-item
+          %a.nav-link{:href => blog_posts_path} Blog Posts
+        - if session[:moderator]
+          %li.nav-item
+            %a.nav-link{:href => moderator_blog_posts_path} Blog Posts Approval
+%br/
